@@ -1,7 +1,8 @@
-import { Text, StyleSheet } from "react-native";
-import { SafeAreaView, SafeAreaProvider } from "react-native-safe-area-context";
-import { Colors } from "@/constants/Colors";
 import SearchBar from "@/components/SearchBar";
+import Slider from "@/components/Slider";
+import { Colors } from "@/constants/Colors";
+import { StyleSheet, Text } from "react-native";
+import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
 
 export default function Index() {
   return (
@@ -10,6 +11,10 @@ export default function Index() {
         <Text style={styles.headerText}>What do you want to watch?</Text>
 
         <SearchBar />
+
+        <Slider />
+
+        {/* Additional content can be added here */}
       </SafeAreaView>
     </SafeAreaProvider>
   );
@@ -21,6 +26,7 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.secondary,
     paddingHorizontal: 24,
     paddingVertical: 20,
+    gap: 20,
   },
   headerText: {
     color: Colors.text,

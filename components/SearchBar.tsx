@@ -1,7 +1,7 @@
-import { StyleSheet, TextInput, View, TouchableOpacity } from "react-native";
-import { Ionicons } from "@expo/vector-icons";
-import { useSearchQuery } from "@/hooks/useSearchQuery";
 import { Colors } from "@/constants/Colors";
+import { useSearchQuery } from "@/hooks/useSearchQuery";
+import { Ionicons } from "@expo/vector-icons";
+import { StyleSheet, TextInput, TouchableOpacity, View } from "react-native";
 
 export default function SearchBar() {
   const { searchQuery, handleSearchChange } = useSearchQuery();
@@ -40,7 +40,6 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: Colors.lightGrey,
     borderRadius: 16,
-    marginTop: 20,
     height: 45,
     width: 327,
     paddingHorizontal: 10,
