@@ -1,21 +1,30 @@
-import { Text, View, StyleSheet } from "react-native";
+import { Text, StyleSheet } from "react-native";
+import { SafeAreaView, SafeAreaProvider } from "react-native-safe-area-context";
+import { Colors } from "@/constants/Colors";
+import SearchBar from "@/components/SearchBar";
 
 export default function Index() {
   return (
-    <View style={styles.container}>
-      <Text style={styles.text}>Edit app/index.tsx to edit this screen.</Text>
-    </View>
+    <SafeAreaProvider>
+      <SafeAreaView style={styles.container} edges={["top", "left", "right"]}>
+        <Text style={styles.headerText}>What do you want to watch?</Text>
+
+        <SearchBar />
+      </SafeAreaView>
+    </SafeAreaProvider>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#242A32",
-    justifyContent: "center",
-    alignItems: "center",
+    backgroundColor: Colors.secondary,
+    paddingHorizontal: 24,
+    paddingVertical: 20,
   },
-  text: {
-    color: "#fff",
+  headerText: {
+    color: Colors.text,
+    fontFamily: "PoppinsSemiBold",
+    fontSize: 18,
   },
 });

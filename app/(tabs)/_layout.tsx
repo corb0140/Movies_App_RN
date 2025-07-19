@@ -8,13 +8,23 @@ export default function TabsLayout() {
         tabBarActiveTintColor: "#0296E5",
         headerStyle: { backgroundColor: "#242A32" },
         headerTintColor: "#fff",
-        tabBarStyle: { backgroundColor: "#242A32" },
+        tabBarStyle: {
+          backgroundColor: "#242A32",
+          borderTopWidth: 0,
+          height: 110,
+        },
+        tabBarItemStyle: {
+          borderTopColor: "#0296e5",
+          borderTopWidth: 1.2,
+          paddingTop: 10,
+        },
       }}
     >
       <Tabs.Screen
         name="index"
         options={{
-          headerTitle: "Movies App",
+          title: "Home",
+          headerShown: false,
           tabBarIcon: ({ focused, color }) => (
             <Ionicons
               name={focused ? "home-sharp" : "home-outline"}
