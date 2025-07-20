@@ -1,12 +1,30 @@
 import { Colors } from "@/constants/Colors";
+import { Image } from "expo-image";
 import React from "react";
 import { StyleSheet, View } from "react-native";
 import Svg, { Text as SvgText } from "react-native-svg";
+import { MoviePoster } from "./Slider";
 
-export default function SliderCard({ cardNumber }: { cardNumber: number }) {
+export default function SliderCard({
+  cardNumber,
+  data,
+}: {
+  cardNumber: number;
+  data: MoviePoster;
+}) {
   return (
     <View style={styles.container}>
-      <View style={styles.card}></View>
+      <View style={styles.card}>
+        {data && (
+          <Image
+            source={{
+              uri: `https://image.tmdb.org/t/p/w500/${data.poster_path}`,
+            }}
+            style={{ width: "100%", height: "100%", borderRadius: 16 }}
+            contentFit="cover"
+          />
+        )}
+      </View>
       <Svg style={styles.cardNumber} width="150" height="120">
         <SvgText
           x="20%"
@@ -35,7 +53,7 @@ const styles = StyleSheet.create({
     width: 144,
     height: 210,
     borderWidth: 1,
-    borderColor: "#fff",
+    borderColor: "transparent",
     borderRadius: 16,
   },
   cardNumber: {

@@ -1,6 +1,10 @@
 {
   "expo": {
     "name": "MoviesApp",
+    "extra": {
+      "API_KEY": "0c97bbce4648e9fb783091167f7ee438",
+      "API_URL": "https://api.themoviedb.org/3"
+    },
     "slug": "MoviesApp",
     "version": "1.0.0",
     "orientation": "portrait",
