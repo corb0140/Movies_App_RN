@@ -10,10 +10,10 @@ export default function SearchBar() {
 
   const handleSearch = async (query: string) => {
     if (query.trim()) {
+      handleSearchChange("");
       return router.push(`/search?query=${encodeURIComponent(query)}`);
     } else {
-      console.warn("Search query is empty");
-      return [];
+      return router.push(`/search?query=${encodeURIComponent("")}`);
     }
   };
 
@@ -29,8 +29,11 @@ export default function SearchBar() {
         autoCorrect={false}
       />
 
-      <TouchableOpacity onPress={() => handleSearch(searchQuery)}>
-        <Ionicons name="search" size={16} color={Colors.lightGrey} />
+      <TouchableOpacity
+        style={styles.iconStyle}
+        onPress={() => handleSearch(searchQuery)}
+      >
+        <Ionicons name="search" size={20} color={Colors.lightGrey} />
       </TouchableOpacity>
     </View>
   );
@@ -47,7 +50,6 @@ const styles = StyleSheet.create({
     borderRadius: 16,
     height: 45,
     width: 327,
-    paddingHorizontal: 10,
   },
   input: {
     color: Colors.primary,
@@ -57,5 +59,13 @@ const styles = StyleSheet.create({
     textAlignVertical: "center",
     paddingTop: 4,
     paddingBottom: 0,
+    paddingLeft: 10,
+  },
+  iconStyle: {
+    borderRadius: 16,
+    height: "100%",
+    width: 40,
+    alignItems: "center",
+    justifyContent: "center",
   },
 });

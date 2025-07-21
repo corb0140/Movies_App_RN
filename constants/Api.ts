@@ -12,4 +12,5 @@ export const ApiEndpoints = {
   UPCOMING_MOVIES: "/movie/upcoming",
   NOW_PLAYING_MOVIES: "/movie/now_playing",
   SEARCH_MOVIE: "/search/movie",
+  MOVIE_DETAILS: "/movie",
 };

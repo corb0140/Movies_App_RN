@@ -61,3 +61,13 @@ export async function searchMovie(query: string) {
     return [];
   }
 }
+
+export async function getMovieDetails(movieId: number) {
+  try {
+    const res = await tmdb.get(`${ApiEndpoints.MOVIE_DETAILS}/${movieId}`);
+    return res.data;
+  } catch (error) {
+    console.error(`Error fetching details for movie ID ${movieId}:`, error);
+    return null;
+  }
+}
