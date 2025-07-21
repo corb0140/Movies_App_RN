@@ -10,7 +10,7 @@ import {
 
 const Tabs = ["Now Playing", "Upcoming", "Top Rated", "Popular"];
 
-export interface TabBarProps {
+interface TabBarProps {
   activeTab: string;
   onTabChange: (tab: string) => void;
 }

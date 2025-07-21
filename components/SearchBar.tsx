@@ -1,15 +1,20 @@
 import { Colors } from "@/constants/Colors";
 import { useSearchQuery } from "@/hooks/useSearchQuery";
 import { Ionicons } from "@expo/vector-icons";
+import { useRouter } from "expo-router";
 import { StyleSheet, TextInput, TouchableOpacity, View } from "react-native";
 
 export default function SearchBar() {
   const { searchQuery, handleSearchChange } = useSearchQuery();
+  const router = useRouter();
 
-  const handleSearch = (text: string) => {
-    console.log("Searching for:", text);
-
-    handleSearchChange("");
+  const handleSearch = async (query: string) => {
+    if (query.trim()) {
+      return router.push(`/search?query=${encodeURIComponent(query)}`);
+    } else {
+      console.warn("Search query is empty");
+      return [];
+    }
   };
 
   return (
