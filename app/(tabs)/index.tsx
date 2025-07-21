@@ -1,3 +1,4 @@
+import MovieTabsView from "@/components/MovieTabsView";
 import SearchBar from "@/components/SearchBar";
 import Slider from "@/components/Slider";
 import { Colors } from "@/constants/Colors";
@@ -14,7 +15,7 @@ export default function Index() {
 
         <Slider />
 
-        {/* Additional content can be added here */}
+        <MovieTabsView />
       </SafeAreaView>
     </SafeAreaProvider>
   );
