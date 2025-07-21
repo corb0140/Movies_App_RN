@@ -3,5 +3,5 @@ export const Colors = {
   secondary: "#242A32",
   lightGrey: "#67686D",
   text: "#FFF",
-  searchBarBgColor: "#3A3F47",
+  darkGreyishBlue: "#3A3F47",
 };

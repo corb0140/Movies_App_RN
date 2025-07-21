@@ -1,3 +1,4 @@
+import { Colors } from "@/constants/Colors";
 import React from "react";
 import {
   ScrollView,
@@ -23,16 +24,20 @@ export default function TabBar({ activeTab, onTabChange }: TabBarProps) {
     >
       {Tabs.map((tab, index) => (
         <View key={index} style={styles.tabsView}>
-          <TouchableOpacity onPress={() => onTabChange(tab)}>
-            <Text
-              style={[
-                styles.tabText,
-                tab === activeTab && styles.activeTabText,
-              ]}
-            >
-              {tab}
-            </Text>
-          </TouchableOpacity>
+          <View>
+            <TouchableOpacity onPress={() => onTabChange(tab)}>
+              <Text
+                style={[
+                  styles.tabText,
+                  tab === activeTab && styles.activeTabText,
+                ]}
+              >
+                {tab}
+              </Text>
+            </TouchableOpacity>
+
+            <View style={tab === activeTab && styles.activeTabLine}></View>
+          </View>
         </View>
       ))}
     </ScrollView>
@@ -57,7 +62,11 @@ const styles = StyleSheet.create({
     color: "#fff",
     fontSize: 14,
     fontFamily: "PoppinsSemiBold",
-    borderBottomWidth: 2,
-    borderBottomColor: "#fff",
+  },
+  activeTabLine: {
+    marginTop: 5,
+    borderBottomWidth: 5,
+    borderBottomColor: Colors.darkGreyishBlue,
+    borderRadius: 100,
   },
 });

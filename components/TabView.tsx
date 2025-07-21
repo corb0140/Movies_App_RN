@@ -70,8 +70,8 @@ const styles = StyleSheet.create({
   },
   movieItem: {
     flex: 1,
-    marginRight: 10,
-    marginBottom: 10,
+    marginRight: 12,
+    marginBottom: 15,
   },
   movieImage: {
     width: "100%",

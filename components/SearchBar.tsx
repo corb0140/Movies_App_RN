@@ -36,7 +36,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
-    backgroundColor: Colors.searchBarBgColor,
+    backgroundColor: Colors.darkGreyishBlue,
     borderWidth: 1,
     borderColor: Colors.lightGrey,
     borderRadius: 16,
