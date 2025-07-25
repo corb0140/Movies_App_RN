@@ -11,7 +11,7 @@ type movieProps = {
   poster_path: string;
 };
 
-type movieDetailsProps = {
+export type movieDetailsProps = {
   id: number;
   title: string;
   release_date: string;
@@ -60,14 +60,38 @@ export default function Search() {
           style={{ flex: 1, alignItems: "center", justifyContent: "center" }}
         >
           <Image
-            source={require("@/assets/images/popcorn.png")}
+            source={require("@/assets/images/no-results.png")}
             style={{
               width: 100,
               height: 100,
               marginBottom: 20,
             }}
           />
-          <Text style={[styles.text, { fontSize: 14 }]}>Search For Movies</Text>
+          <View>
+            <Text
+              style={[
+                styles.text,
+                {
+                  fontSize: 16,
+                  textAlign: "center",
+                  fontFamily: "MontserratSemiBold",
+                },
+              ]}
+            >
+              We are Sorry, We Can Not Find The Movie :(
+            </Text>
+            <Text
+              style={{
+                marginTop: 10,
+                color: "#fff",
+                fontSize: 12,
+                textAlign: "center",
+                fontFamily: "MontserratMedium",
+              }}
+            >
+              Find your movie by searching for its title.
+            </Text>
+          </View>
         </View>
       </View>
     );

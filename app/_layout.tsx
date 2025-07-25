@@ -33,6 +33,18 @@ export default function RootLayout() {
         <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
 
         <Stack.Screen
+          name="details"
+          options={{
+            title: "Movie Details",
+            headerTitleAlign: "center",
+            headerStyle: {
+              backgroundColor: "#242A32",
+            },
+            headerTintColor: "#fff",
+          }}
+        />
+
+        <Stack.Screen
           name="+not-found"
           options={{ title: "Not Found", headerShown: false }}
         />

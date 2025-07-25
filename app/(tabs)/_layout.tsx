@@ -1,5 +1,5 @@
-import { Tabs } from "expo-router";
 import { Ionicons } from "@expo/vector-icons";
+import { Tabs } from "expo-router";
 
 export default function TabsLayout() {
   return (
@@ -52,7 +52,7 @@ export default function TabsLayout() {
       <Tabs.Screen
         name="watch-list"
         options={{
-          headerTitle: "Watch List",
+          title: "Watch List",
           headerTitleAlign: "center",
           tabBarIcon: ({ focused, color }) => (
             <Ionicons

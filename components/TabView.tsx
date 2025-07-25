@@ -4,14 +4,22 @@ import {
   getTopRatedMovies,
   getUpcomingMovies,
 } from "@/services/tmdbApi";
+import { useRouter } from "expo-router";
 import React, { useEffect, useState } from "react";
-import { FlatList, Image, StyleSheet, View } from "react-native";
+import {
+  FlatList,
+  Image,
+  StyleSheet,
+  TouchableOpacity,
+  View,
+} from "react-native";
 
 export interface TabViewProps {
   activeTab: string;
 }
 
 export default function TabView({ activeTab }: TabViewProps) {
+  const router = useRouter();
   const [movies, setMovies] = useState([]);
   const numColumns = 3;
 
@@ -50,12 +58,21 @@ export default function TabView({ activeTab }: TabViewProps) {
         numColumns={numColumns}
         renderItem={({ item }) => (
           <View style={styles.movieItem}>
-            <Image
-              source={{
-                uri: `https://image.tmdb.org/t/p/w500${item.poster_path}`,
+            <TouchableOpacity
+              onPress={() => {
+                router.push({
+                  pathname: "/details",
+                  params: { id: item.id },
+                });
               }}
-              style={styles.movieImage}
-            />
+            >
+              <Image
+                source={{
+                  uri: `https://image.tmdb.org/t/p/w500${item.poster_path}`,
+                }}
+                style={styles.movieImage}
+              />
+            </TouchableOpacity>
           </View>
         )}
       />

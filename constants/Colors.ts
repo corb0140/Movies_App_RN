@@ -4,5 +4,6 @@ export const Colors = {
   lightGrey: "#67686D",
   text: "#FFF",
   darkGreyishBlue: "#3A3F47",
+  darkGreyishBlue32Opac: "#3A3F4750",
   brightOrange: "#FF8700",
 };
