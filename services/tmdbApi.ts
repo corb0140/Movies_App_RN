@@ -71,3 +71,27 @@ export async function getMovieDetails(movieId: number) {
     return null;
   }
 }
+
+export async function getMovieCredits(movieId: number) {
+  try {
+    const res = await tmdb.get(
+      `${ApiEndpoints.MOVIE_DETAILS}/${movieId}${ApiEndpoints.MOVIE_CREDITS}`
+    );
+    return res.data.cast;
+  } catch (error) {
+    console.error(`Error fetching credits for movie ID ${movieId}:`, error);
+    return [];
+  }
+}
+
+export async function getMovieReviews(movieId: number) {
+  try {
+    const res = await tmdb.get(
+      `${ApiEndpoints.MOVIE_DETAILS}/${movieId}${ApiEndpoints.MOVIE_REVIEWS}`
+    );
+    return res.data.results;
+  } catch (error) {
+    console.error(`Error fetching reviews for movie ID ${movieId}:`, error);
+    return [];
+  }
+}

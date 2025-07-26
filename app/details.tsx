@@ -1,3 +1,4 @@
+import DetailsTabsView from "@/components/details/DetailsTabView";
 import { Colors } from "@/constants/Colors";
 import { getMovieDetails } from "@/services/tmdbApi";
 import { Ionicons } from "@expo/vector-icons";
@@ -18,7 +19,7 @@ type ExtendedMovieDetailsProps = movieDetailsProps & {
 
 export default function Details() {
   const router = useRoute() as { params: { id: number } };
-  const { id } = router.params ? router.params : { id: null };
+  const { id } = router.params ? router.params : { id: 0 };
   const [movieDetails, setMovieDetails] = useState<ExtendedMovieDetailsProps>({
     id: 0,
     poster_path: "",
@@ -90,6 +91,7 @@ export default function Details() {
           </View>
         </View>
 
+        {/* DATE, TIME, GENRE */}
         <View
           style={{
             flexDirection: "row",
@@ -134,7 +136,11 @@ export default function Details() {
             </Text>
           </View>
         </View>
-        <Text></Text>
+
+        {/* TAB BAR & VIEW */}
+        <DetailsTabsView id={id} />
+
+        {/* OVERVIEW */}
       </SafeAreaView>
     </SafeAreaProvider>
   );

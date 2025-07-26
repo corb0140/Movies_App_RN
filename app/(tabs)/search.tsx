@@ -107,12 +107,19 @@ export default function Search() {
           keyExtractor={(movie) => movie.id.toString()}
           renderItem={({ item }) => (
             <View style={styles.itemContainer}>
-              <Image
-                source={{
-                  uri: `https://image.tmdb.org/t/p/w500${item.poster_path}`,
-                }}
-                style={styles.image}
-              />
+              {item.poster_path ? (
+                <Image
+                  source={{
+                    uri: `https://image.tmdb.org/t/p/w500${item.poster_path}`,
+                  }}
+                  style={styles.image}
+                />
+              ) : (
+                <Image
+                  source={require("@/assets/images/no-poster.jpg")}
+                  style={styles.image}
+                />
+              )}
 
               <View style={styles.movieInfoContainer}>
                 <View style={{ flex: 1 }}>
@@ -140,21 +147,23 @@ export default function Search() {
                       {movieDetailsMap[item.id]?.genres
                         .map((genre) => genre.name)
                         .splice(0, 2)
-                        .join(" ") ?? "N/A"}
+                        .join(" ") || "N/A"}
                     </Text>
                   </View>
 
                   <View style={styles.info}>
                     <Ionicons name="calendar-outline" size={16} color="#fff" />
                     <Text style={styles.text}>
-                      {movieDetailsMap[item.id]?.release_date ?? "N/A"}
+                      {movieDetailsMap[item.id]?.release_date || "N/A"}
                     </Text>
                   </View>
 
                   <View style={styles.info}>
                     <Ionicons name="time-outline" size={16} color="#fff" />
                     <Text style={styles.text}>
-                      {movieDetailsMap[item.id]?.runtime ?? "N/A"} minutes
+                      {movieDetailsMap[item.id]?.runtime
+                        ? `${movieDetailsMap[item.id]?.runtime} minutes`
+                        : "N/A"}
                     </Text>
                   </View>
                 </View>
@@ -172,12 +181,11 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#242A32",
     alignItems: "center",
-    paddingVertical: 30,
     paddingHorizontal: 34,
   },
   flatList: {
     flex: 1,
-    paddingVertical: 40,
+    marginTop: 20,
     width: "100%",
   },
   itemContainer: {
