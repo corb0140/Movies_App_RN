@@ -13,7 +13,6 @@ export const storeMovieInWatchList = async (key: string, value: any) => {
       }
     }
 
-    // Check if the movie is already in the watch list
     const movieExists = watchList.some((movie: any) => movie.id === value.id);
 
     if (!movieExists) {
