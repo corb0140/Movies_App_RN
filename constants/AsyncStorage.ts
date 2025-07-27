@@ -38,13 +38,15 @@ export const getWatchList = async (key: string) => {
   }
 };
 
-export const removeMovieFromWatchList = async (key: string, id: any) => {
+export const removeMovieFromWatchList = async (key: string, id: number) => {
   try {
     const storedList = await AsyncStorage.getItem(key);
     if (!storedList) return;
 
     const parsedList = JSON.parse(storedList);
-    const filteredList = parsedList.filter((movie: any) => movie.id !== id);
+    const filteredList = parsedList.filter(
+      (movie: any) => Number(movie.id) !== id
+    );
 
     await AsyncStorage.setItem(key, JSON.stringify(filteredList));
     console.log("Movie removed from watch list");

@@ -34,7 +34,7 @@ export default function RootLayout() {
     if (!id) return;
 
     if (isBookmarked) {
-      await removeMovieFromWatchList("watch-list", id);
+      await removeMovieFromWatchList("watch-list", Number(id));
       setIsBookmarked(false);
     } else {
       const movie = { id };
