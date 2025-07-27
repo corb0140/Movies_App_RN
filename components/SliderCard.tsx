@@ -1,7 +1,8 @@
 import { Colors } from "@/constants/Colors";
 import { Image } from "expo-image";
+import { useRouter } from "expo-router";
 import React from "react";
-import { StyleSheet, View } from "react-native";
+import { StyleSheet, TouchableOpacity, View } from "react-native";
 import Svg, { Text as SvgText } from "react-native-svg";
 import { MoviePoster } from "./Slider";
 
@@ -12,35 +13,40 @@ export default function SliderCard({
   cardNumber: number;
   data: MoviePoster;
 }) {
+  const router = useRouter();
+
   return (
-    <View style={styles.container}>
-      <View style={styles.card}>
-        {data && (
-          <Image
-            source={{
-              uri: `https://image.tmdb.org/t/p/w500/${data.poster_path}`,
-            }}
-            style={{ width: "100%", height: "100%", borderRadius: 16 }}
-            contentFit="cover"
-          />
-        )}
+    <TouchableOpacity onPress={() => router.push(`/details/${data.id}`)}>
+      <View style={styles.container}>
+        <View style={styles.card}>
+          {data && (
+            <Image
+              source={{
+                uri: `https://image.tmdb.org/t/p/w500/${data.poster_path}`,
+              }}
+              style={{ width: "100%", height: "100%", borderRadius: 16 }}
+              contentFit="cover"
+            />
+          )}
+        </View>
+
+        <Svg style={styles.cardNumber} width="150" height="120">
+          <SvgText
+            x="20%"
+            y="40%"
+            fill={Colors.secondary}
+            fontSize="96"
+            fontFamily="MontserratSemiBold"
+            stroke={Colors.primary}
+            strokeWidth="2"
+            textAnchor="middle"
+            alignmentBaseline="middle"
+          >
+            {cardNumber}
+          </SvgText>
+        </Svg>
       </View>
-      <Svg style={styles.cardNumber} width="150" height="120">
-        <SvgText
-          x="20%"
-          y="40%"
-          fill={Colors.secondary}
-          fontSize="96"
-          fontFamily="MontserratSemiBold"
-          stroke={Colors.primary}
-          strokeWidth="2"
-          textAnchor="middle"
-          alignmentBaseline="middle"
-        >
-          {cardNumber}
-        </SvgText>
-      </Svg>
-    </View>
+    </TouchableOpacity>
   );
 }
 

@@ -48,7 +48,6 @@ const styles = StyleSheet.create({
   container: {
     flexGrow: 0,
     marginTop: 20,
-    marginLeft: 29,
   },
   tabsView: {
     paddingBottom: 10,

@@ -6,9 +6,9 @@ import { useRoute } from "@react-navigation/native";
 import React, { useEffect, useState } from "react";
 import { Image, StyleSheet, Text, View } from "react-native";
 import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
-import { movieDetailsProps } from "./(tabs)/search";
+import { movieDetailsProps } from "../(tabs)/search";
 
-type ExtendedMovieDetailsProps = movieDetailsProps & {
+export type ExtendedMovieDetailsProps = movieDetailsProps & {
   backdrop_path: string;
   poster_path: string;
   vote_average: number;
@@ -139,8 +139,6 @@ export default function Details() {
 
         {/* TAB BAR & VIEW */}
         <DetailsTabsView id={id} />
-
-        {/* OVERVIEW */}
       </SafeAreaView>
     </SafeAreaProvider>
   );

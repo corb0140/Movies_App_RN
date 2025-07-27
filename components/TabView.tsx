@@ -60,10 +60,7 @@ export default function TabView({ activeTab }: TabViewProps) {
           <View style={styles.movieItem}>
             <TouchableOpacity
               onPress={() => {
-                router.push({
-                  pathname: "/details",
-                  params: { id: item.id },
-                });
+                router.push(`/details/${item.id}`);
               }}
             >
               <Image

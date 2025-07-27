@@ -17,5 +17,6 @@ export default function DetailsTabsView({ id }: { id: number }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    paddingHorizontal: 40,
   },
 });

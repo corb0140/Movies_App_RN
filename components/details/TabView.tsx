@@ -147,12 +147,10 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     marginTop: 10,
-    paddingHorizontal: 20,
   },
   reviewsContainer: {
     flex: 1,
     flexDirection: "row",
-    paddingHorizontal: 20,
     paddingVertical: 10,
   },
   reviewImageAndRating: {
@@ -172,9 +170,8 @@ const styles = StyleSheet.create({
   },
   castItem: {
     flex: 1,
-    marginRight: 12,
     marginBottom: 15,
-    alignItems: "center",
+    alignItems: "flex-start",
   },
   castImageContainer: {
     width: 100,
