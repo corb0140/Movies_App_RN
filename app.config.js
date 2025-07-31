@@ -5,6 +5,7 @@ export default {
     name: "MoviesApp",
     slug: "MoviesApp",
     version: "1.0.0",
+    owner: "kolizak",
     orientation: "portrait",
     icon: "./assets/images/icon.png",
     scheme: "moviesapp",
@@ -43,6 +44,9 @@ export default {
     extra: {
       API_KEY: process.env.API_KEY,
       API_URL: process.env.API_URL,
+      eas: {
+        projectId: "8f03fd4b-9a97-4731-8f49-ab56be8e2a78",
+      },
     },
   },
 };
