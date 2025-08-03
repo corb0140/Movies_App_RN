@@ -92,6 +92,18 @@ export default function RootLayout() {
         />
 
         <Stack.Screen
+          name="quiz/[type]"
+          options={{
+            title: "Quiz",
+            headerTitleAlign: "center",
+            headerStyle: {
+              backgroundColor: "#242A32",
+            },
+            headerTintColor: "#fff",
+          }}
+        />
+
+        <Stack.Screen
           name="+not-found"
           options={{ title: "Not Found", headerShown: false }}
         />

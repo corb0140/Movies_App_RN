@@ -6,4 +6,5 @@ export const Colors = {
   darkGreyishBlue: "#3A3F47",
   darkGreyishBlue32Opac: "#3A3F4750",
   brightOrange: "#FF8700",
+  brightPink: "#FF007F",
 };

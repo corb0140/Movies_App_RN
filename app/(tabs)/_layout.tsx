@@ -63,6 +63,21 @@ export default function TabsLayout() {
           ),
         }}
       />
+
+      <Tabs.Screen
+        name="quiz"
+        options={{
+          title: "Quiz",
+          headerTitleAlign: "center",
+          tabBarIcon: ({ focused, color }) => (
+            <Ionicons
+              name={focused ? "help-circle" : "help-circle-outline"}
+              size={30}
+              color={color}
+            />
+          ),
+        }}
+      />
     </Tabs>
   );
 }
