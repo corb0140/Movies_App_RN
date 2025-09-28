@@ -27,6 +27,8 @@ export default {
       favicon: "./assets/images/favicon.png",
     },
     plugins: [
+      "expo-font",
+      "expo-web-browser",
       "expo-router",
       [
         "expo-splash-screen",

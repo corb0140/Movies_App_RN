@@ -56,7 +56,7 @@ export default function Details() {
             }}
             style={styles.image}
           />
-
+          s
           <View style={styles.posterAndNameContainer}>
             <Image
               source={{
@@ -77,7 +77,6 @@ export default function Details() {
               {movieDetails.title}
             </Text>
           </View>
-
           <View style={styles.popularityContainer}>
             <Ionicons
               name="star-outline"

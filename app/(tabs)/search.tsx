@@ -3,8 +3,16 @@ import { Colors } from "@/constants/Colors";
 import { getMovieDetails, searchMovie } from "@/services/tmdbApi";
 import { Ionicons } from "@expo/vector-icons";
 import { useRoute } from "@react-navigation/native";
+import { router } from "expo-router";
 import React, { useEffect, useState } from "react";
-import { FlatList, Image, StyleSheet, Text, View } from "react-native";
+import {
+  FlatList,
+  Image,
+  Pressable,
+  StyleSheet,
+  Text,
+  View,
+} from "react-native";
 
 type movieProps = {
   id: number;
@@ -106,7 +114,10 @@ export default function Search() {
           data={results}
           keyExtractor={(movie) => movie.id.toString()}
           renderItem={({ item }) => (
-            <View style={styles.itemContainer}>
+            <Pressable
+              onPress={() => router.push(`/details/${item.id}`)}
+              style={styles.itemContainer}
+            >
               {item.poster_path ? (
                 <Image
                   source={{
@@ -168,7 +179,7 @@ export default function Search() {
                   </View>
                 </View>
               </View>
-            </View>
+            </Pressable>
           )}
         />
       </View>

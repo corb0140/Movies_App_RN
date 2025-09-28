@@ -6,12 +6,14 @@ import { Colors } from "@/constants/Colors";
 import { getMovieDetails } from "@/services/tmdbApi";
 import { Ionicons } from "@expo/vector-icons";
 import { useFocusEffect } from "@react-navigation/native";
+import { router } from "expo-router";
 import React, { useCallback, useRef, useState } from "react";
 import {
   Alert,
   Animated,
   FlatList,
   Image,
+  Pressable,
   StyleSheet,
   Text,
   useAnimatedValue,
@@ -148,19 +150,21 @@ export default function WatchListScreen() {
           renderItem={({ item }) => (
             <View style={styles.itemContainer}>
               {/* POSTER */}
-              {item.poster_path ? (
-                <Image
-                  source={{
-                    uri: `https://image.tmdb.org/t/p/w500${item.poster_path}`,
-                  }}
-                  style={styles.image}
-                />
-              ) : (
-                <Image
-                  source={require("@/assets/images/no-poster.jpg")}
-                  style={styles.image}
-                />
-              )}
+              <Pressable onPress={() => router.push(`/details/${item.id}`)}>
+                {item.poster_path ? (
+                  <Image
+                    source={{
+                      uri: `https://image.tmdb.org/t/p/w500${item.poster_path}`,
+                    }}
+                    style={styles.image}
+                  />
+                ) : (
+                  <Image
+                    source={require("@/assets/images/no-poster.jpg")}
+                    style={styles.image}
+                  />
+                )}
+              </Pressable>
 
               {/* MOVIE INFORMATION */}
               <View style={styles.movieInfoContainer}>

@@ -18,10 +18,14 @@ export default function Question() {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [questions, setQuestions] = useState<any[]>([]);
   const [countdown, setCountdown] = useState(20);
+  const [score, setScore] = useState(0);
+  const [selectedOption, setSelectedOption] = useState<string | null>(null);
+  const [isAnswerRevealed, setIsAnswerRevealed] = useState(false);
+
   const timer_duration = 20;
 
   const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
-  const intervalRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
   useEffect(() => {
     switch (type) {
@@ -71,23 +75,20 @@ export default function Question() {
     }
 
     return () => {
-      if (timerRef.current) {
-        clearTimeout(timerRef.current);
-      }
-
-      if (intervalRef.current) {
-        clearInterval(intervalRef.current);
-      }
+      if (timerRef.current) clearTimeout(timerRef.current);
+      if (intervalRef.current) clearInterval(intervalRef.current);
     };
   }, [currentQuestionIndex, questions]);
 
   if (currentQuestionIndex >= questions.length) {
     return (
-      <View>
+      <View style={styles.container}>
         <Text style={styles.finishedTextTitle}>Quiz Finished!</Text>
-
         <Text style={styles.finishedTextSubtitle}>
           Thank you for participating in the {type} quiz.
+        </Text>
+        <Text style={styles.scoreText}>
+          You got {score} out of {questions.length} correct!
         </Text>
       </View>
     );
@@ -96,19 +97,24 @@ export default function Question() {
   const currentQuestion = questions[currentQuestionIndex];
 
   const moveToNextQuestion = () => {
-    clearTimeout(timerRef.current!);
+    setSelectedOption(null);
+    setIsAnswerRevealed(false);
     setCurrentQuestionIndex((prev) => prev + 1);
   };
 
   const handleOptionSelect = (option: string) => {
-    // Optionally: Check if correct here
+    if (isAnswerRevealed) return;
+
+    setSelectedOption(option);
+    setIsAnswerRevealed(true);
+
     if (option === currentQuestion.answer) {
-      console.log("Correct answer!");
-    } else {
-      console.log("Wrong answer!");
+      setScore((prev) => prev + 1);
     }
 
-    moveToNextQuestion();
+    setTimeout(() => {
+      moveToNextQuestion();
+    }, 1500);
   };
 
   return (
@@ -118,15 +124,37 @@ export default function Question() {
       <View style={styles.questionContainer}>
         <Text style={styles.questionText}>{currentQuestion.question}</Text>
 
-        {Object.values(currentQuestion.options).map((option, idx) => (
-          <TouchableOpacity
-            key={idx}
-            style={styles.optionButton}
-            onPress={() => handleOptionSelect(option as string)}
-          >
-            <Text style={styles.optionText}>{option as string}</Text>
-          </TouchableOpacity>
-        ))}
+        {Object.values(currentQuestion.options).map((option, idx) => {
+          let borderColor = "transparent";
+
+          if (isAnswerRevealed) {
+            if (option === currentQuestion.answer) {
+              borderColor = "green";
+            } else if (
+              option === selectedOption &&
+              option !== currentQuestion.answer
+            ) {
+              borderColor = "red";
+            }
+          }
+
+          return (
+            <TouchableOpacity
+              key={idx}
+              style={[
+                styles.optionButton,
+                {
+                  borderColor,
+                  borderWidth: borderColor !== "transparent" ? 2 : 0,
+                },
+              ]}
+              onPress={() => handleOptionSelect(option as string)}
+              disabled={isAnswerRevealed} // prevent pressing again
+            >
+              <Text style={styles.optionText}>{option as string}</Text>
+            </TouchableOpacity>
+          );
+        })}
 
         <Text style={styles.timerText}>You have {countdown} seconds</Text>
       </View>
@@ -190,5 +218,12 @@ const styles = StyleSheet.create({
     textAlign: "center",
     marginTop: 20,
     color: Colors.secondary,
+  },
+  scoreText: {
+    fontSize: 18,
+    fontFamily: "PoppinsBold",
+    textAlign: "center",
+    marginTop: 30,
+    color: Colors.primary,
   },
 });
